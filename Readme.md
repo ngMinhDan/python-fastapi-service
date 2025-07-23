@@ -14,6 +14,15 @@
 | **Auditing**           | Should you log registrations? Add metrics?           |
 
 
+
+Skill	Practice
+Clean Code	Layered structure (schema, router, service, repo)
+Async	Use async def and motor with MongoDB
+Security	Password hashing, no plain-text storage
+Testing	Pytest: test service and router layers
+Type hints	Always type input/output clearly
+Scaling	Learn FastAPI Dependency Injection, background jobs, etc.
+
 ## Which solution is used?
 
 

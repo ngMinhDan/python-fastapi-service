@@ -13,4 +13,4 @@ class MongoClient:
         await init_beanie(database=self.client[self.db_name], document_models=[User])
 
     async def close_mongodb(self):
-        await self.client.close()
+        self.client.close()

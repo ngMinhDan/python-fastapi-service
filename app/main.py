@@ -3,6 +3,8 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from app.db.mongodb import MongoClient
 from app.api import router as router
+from app.core.ratelimit import SlidingWindowRateLimit
+
 
 mongo_client = MongoClient()
 
@@ -22,5 +24,5 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
-
+app.add_middleware(SlidingWindowRateLimit)
 app.include_router(router, prefix="")
