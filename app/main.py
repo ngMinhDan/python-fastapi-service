@@ -1,9 +1,26 @@
 # Fast API app instance & startup logic
+from contextlib import asynccontextmanager
 from fastapi import FastAPI
-from app.api.health import router as health_router
-from app.api.v1.user import router as user_router
+from app.db.mongodb import MongoClient
+from app.api import router as router
 
-app = FastAPI(title="FastAPI Server", description="FastAPI Server", version="0.0.1")
+mongo_client = MongoClient()
 
-app.include_router(health_router, prefix="")
-app.include_router(user_router, prefix="/api/v1")
+
+# lifespan for fastapi app , new and modern way to manage startup and shutdown logic
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    await mongo_client.connect_mongodb()
+    yield
+    await mongo_client.close_mongodb()
+
+
+app = FastAPI(
+    title="FastAPI Server",
+    description="FastAPI Server",
+    version="0.0.1",
+    lifespan=lifespan,
+)
+
+
+app.include_router(router, prefix="")
