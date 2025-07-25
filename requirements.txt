@@ -1,7 +1,5 @@
-fastapi==0.104.1
 beanie==1.23.6
+fastapi==0.104.1
 uvicorn[standard]==0.21.1
-aiohttp
-pydantic
-bcrypt
-sqlmodel
+aiohttp==3.8.5
+aiohttp-sse-client==0.2.1
