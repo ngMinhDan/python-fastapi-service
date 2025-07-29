@@ -6,10 +6,9 @@ from datetime import datetime, timezone
 class User(Document):
     name: str
     email: str
-    password: str
     hashed_password: str
     created_at: datetime = datetime.now(timezone.utc)
-    updated_at: datetime
+    updated_at: datetime = datetime.now(timezone.utc)
     active: bool = False
     role: Optional[str] = "user"
     phone: Optional[str] = None
@@ -21,3 +20,8 @@ class User(Document):
     async def save(self, *args, **kwargs):
         self.updated_at = datetime.now(timezone.utc)
         return await super().save(*args, **kwargs)
+
+    @classmethod
+    async def find_emails(cls, email: str):
+        is_exists = await cls.find({"email": email}).exists()
+        return is_exists
