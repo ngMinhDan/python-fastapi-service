@@ -9,14 +9,15 @@ from pydantic import BaseModel
 from app.schemas.auth import AuthJWTData, AuthJWTResponse
 from passlib.context import CryptContext
 from fastapi.security import OAuth2PasswordBearer
+from app.core.config import config
 
-SECRET_KEY = "xxxxxxxxxxxx"
-ALGORITHM = "HS256"
-EXPIRE_MINUTES = 30
+SECRET_KEY = config.jwt_config.SECRET_KEY
+ALGORITHM = config.jwt_config.ALGORITHM
+EXPIRE_MINUTES = config.jwt_config.EXPIRE_MINUTES
 
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token") # get token from header
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")  # get token from header
 
 
 def get_password_hash(password: str):

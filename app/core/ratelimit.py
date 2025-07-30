@@ -14,8 +14,12 @@ from starlette.middleware.base import BaseHTTPMiddleware
 from starlette.requests import Request
 from starlette.responses import Response
 from fastapi import FastAPI
+from app.core.config import config
 
-MAX_REQUESTS, WINDOW_SEC = 10, 60
+MAX_REQUESTS, WINDOW_SEC = (
+    config.rate_limit_config.MAX_REQUESTS,
+    config.rate_limit_config.WINDOW_SEC,
+)
 
 
 class SlidingWindowRateLimit(BaseHTTPMiddleware):
