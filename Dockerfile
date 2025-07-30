@@ -24,5 +24,5 @@ ENV OTEL_SERVICE_NAME='python-fastapi-service'
 ENV UVICORN_LOG_CONFIG=config/log-config.yml
 
 # command: use exec-format over shell-format
-ENTRYPOINT ["uvicorn", "--factory", "app.main:create_app", "--host", "0.0.0.0", "--port", "80", "--workers", "1"]
+ENTRYPOINT ["uvicorn", "--factory", "app.main:create_app", "--host", "0.0.0.0", "--port", "8000", "--workers", "1"]
 

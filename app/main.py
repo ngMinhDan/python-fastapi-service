@@ -4,7 +4,6 @@ from fastapi import FastAPI
 from app.db.mongodb import MongoClient
 from app.api import router as router
 from app.core.middleware import setup_middleware
-from app.core.config import config
 
 mongo_client = MongoClient()
 
