@@ -17,13 +17,13 @@ async def lifespan(app: FastAPI):
     await mongo_client.close_mongodb()
 
 
-app = FastAPI(
-    title="FastAPI Server",
-    description="FastAPI Server",
-    version="0.0.1",
-    lifespan=lifespan,
-)
-
-setup_middleware(app)
-
-app.include_router(router, prefix="")
+def create_app():
+    app = FastAPI(
+        title="FastAPI Server",
+        description="FastAPI Server",
+        version="0.0.1",
+        lifespan=lifespan,
+    )
+    setup_middleware(app)
+    app.include_router(router, prefix="")
+    return app
