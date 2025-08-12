@@ -1,12 +1,8 @@
 from datetime import datetime, timedelta, timezone
-from typing import Optional, Annotated
+from typing import Optional
 
 import jwt
 
-from fastapi import Depends, FastAPI, HTTPException, status, Header
-from pydantic import BaseModel
-
-from app.schemas.auth import AuthJWTData, AuthJWTResponse
 from passlib.context import CryptContext
 from fastapi.security import OAuth2PasswordBearer
 from app.core.config import config

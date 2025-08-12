@@ -1,5 +1,4 @@
 install: 
 	pip install -r requirements.txt
-run:
-	uvicorn app.main:app --reload --port 8000
-
+dev:
+	uvicorn app.main:create_app --reload --port 8000

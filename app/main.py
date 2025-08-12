@@ -4,7 +4,6 @@ from fastapi import FastAPI
 from app.db.mongodb import MongoClient
 from app.api import router as router
 from app.core.middleware import setup_middleware
-from app.core.config import config
 
 mongo_client = MongoClient()
 
@@ -17,13 +16,13 @@ async def lifespan(app: FastAPI):
     await mongo_client.close_mongodb()
 
 
-app = FastAPI(
-    title="FastAPI Server",
-    description="FastAPI Server",
-    version="0.0.1",
-    lifespan=lifespan,
-)
-
-setup_middleware(app)
-
-app.include_router(router, prefix="")
+def create_app():
+    app = FastAPI(
+        title="FastAPI Server",
+        description="FastAPI Server",
+        version="0.0.1",
+        lifespan=lifespan,
+    )
+    setup_middleware(app)
+    app.include_router(router, prefix="")
+    return app
