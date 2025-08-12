@@ -3,7 +3,7 @@
 from typing import Optional, List
 from datetime import datetime, timezone
 from beanie import Document, Indexed
-from pydantic import Field, EmailStr
+from pydantic import Field
 from pymongo import IndexModel, ASCENDING
 
 
@@ -168,7 +168,7 @@ class User(Document):
         Returns:
             dict: User data as dictionary
         """
-        data = self.dict()
+        data = self.model_dump()
         
         if exclude_sensitive:
             data.pop('hashed_password', None)
