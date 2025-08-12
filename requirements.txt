@@ -5,3 +5,8 @@ aiohttp==3.8.5
 aiohttp-sse-client==0.2.1
 pyjwt==2.10.1
 passlib==1.7.4
+email-validator==2.1.0
+pytest==7.4.3
+pytest-asyncio==0.21.1
+httpx==0.25.2
+bcrypt==4.1.2
